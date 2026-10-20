@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5526c9">
+<meta name="description" content="Freela Brasil: encontre oportunidades ou divulgue seus serviços.">
+<title>Freela Brasil — Oportunidades para você</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brandmark">F<span>!</span></div>
+  <div class="brand-copy"><h1>freela<span>brasil</span></h1><p>Seu talento abre caminhos.</p></div>
+  <button class="iconbtn" aria-label="Notificações" title="Notificações">♧<i></i></button>
+</header>
+<main>
+  <section class="welcome">
+    <div class="hero-glow"></div>
+    <span class="eyebrow"><span class="live-dot"></span> SEU PRÓXIMO PASSO COMEÇA AQUI</span>
+    <h2>Seu talento.<br><em>Novas oportunidades.</em></h2>
+    <p>Encontre trabalho, conquiste clientes e faça acontecer — do seu jeito.</p>
+    <div class="actions">
+      <button class="primary" id="findBtn">Encontrar trabalho <span>↗</span></button>
+      <button class="secondary" id="publishBtn"><span>＋</span> Divulgar serviço</button>
+    </div>
+    <div class="hero-foot"><span class="avatar-stack"><b>✦</b><b>✓</b><b>+</b></span><span>Um mundo de possibilidades para explorar</span></div>
+    <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+  </section>
+  <section class="searchbox">
+    <div class="search-symbol">⌕</div><div class="search-field"><label for="search">O que você está procurando?</label><input id="search" placeholder="Ex.: entregador, limpeza, garçom"></div><button id="searchGo" class="search-go" aria-label="Buscar">→</button>
+  </section>
+  <section class="quick-stats">
+    <div><span class="stat-icon purple">✦</span><strong>40+</strong><small>áreas para explorar</small></div>
+    <div><span class="stat-icon orange">↗</span><strong>Seu futuro</strong><small>começa com uma busca</small></div>
+  </section>
+  <section class="section-block">
+    <div class="sectionhead"><div><span class="section-kicker">ENCONTRE SEU CAMINHO</span><h2>Explore categorias</h2></div><span class="section-note">Toque para ver <b>→</b></span></div>
+    <div class="categories" id="categories"></div>
+  </section>
+  <section id="jobsSection" class="section-block">
+    <div class="sectionhead"><div><span class="section-kicker">COMECE POR AQUI</span><h2>Oportunidades em destaque</h2></div><span class="demo-pill">EXEMPLOS</span></div>
+    <div id="jobs" class="jobs"></div>
+  </section>
+  <section class="ai-card">
+    <div class="ai-spark">✳</div><div class="ai-copy"><span class="ai-label">SEU PARCEIRO CRIATIVO</span><h2>Ideias melhores com IA.</h2><p>Currículo, proposta, divulgação e organização do seu trabalho em um só lugar.</p><button id="aiBtn" class="ai-link">Conhecer assistente <span>↗</span></button></div><div class="ai-decoration">✦</div>
+  </section>
+  <section class="publish-banner"><div class="publish-icon">＋</div><div><h2>Você oferece um serviço?</h2><p>Prepare sua apresentação e fique pronto para encontrar clientes.</p></div><button id="publishBottom" aria-label="Divulgar serviço">→</button></section>
+  <section class="notice"><strong>ℹ️ Sobre esta versão</strong><p>Este é um protótipo demonstrativo. As oportunidades são exemplos, não vagas reais. Cadastro, mensagens, pagamentos e IA online ainda precisam ser conectados antes do lançamento público.</p></section>
+</main>
+<nav class="bottomnav">
+  <button class="active" data-tab="Início"><span class="nav-icon">⌂</span><span>Início</span></button>
+  <button data-tab="Buscar"><span class="nav-icon">⌕</span><span>Buscar</span></button>
+  <button data-tab="Publicar"><span class="nav-add">＋</span><span>Publicar</span></button>
+  <button data-tab="Assistente"><span class="nav-icon">✳</span><span>Assistente</span></button>
+  <button data-tab="Perfil"><span class="nav-icon">♙</span><span>Perfil</span></button>
+</nav>
+<dialog id="modal"><form method="dialog" class="modalcontent"><button class="close" aria-label="Fechar">×</button><div class="modal-mark">F!</div><h2 id="modalTitle">Freela Brasil</h2><div id="modalBody"></div></form></dialog>
+<script src="app.js"></script>
+</body>
+</html>

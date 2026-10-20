@@ -1,0 +1,14 @@
+FREELA BRASIL — PROTÓTIPO COM ASSISTENTE DEMONSTRATIVO
+
+COMO TESTAR NO CELULAR
+1. Extraia o ZIP para uma pasta.
+2. Abra index.html em um navegador compatível.
+3. Toque em “Conhecer assistente” ou em “Assistente” na navegação inferior.
+4. Escreva uma pergunta sobre currículo, trabalho, proposta, orçamento ou segurança e toque em “Conversar”.
+
+IMPORTANTE
+- Esta é uma demonstração local: as respostas do assistente são limitadas e pré-programadas. Não é ainda uma conexão com ChatGPT ou outra IA online.
+- O assistente não publica nem envia nada. Para ações importantes, o projeto deverá apresentar uma tela de revisão e confirmação explícita.
+- As oportunidades mostradas são exemplos, não vagas reais.
+- Para uma IA real, será necessário configurar um servidor seguro e uma API; nunca coloque chaves secretas dentro dos arquivos do aplicativo.
+- Cadastro real, banco de dados, mensagens, pagamentos, moderação, privacidade, termos, anúncios e publicação Android ainda precisam ser implementados e testados.
