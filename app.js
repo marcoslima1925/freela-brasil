@@ -30,3 +30,51 @@ function openAssistant(){
 }
 document.querySelector("#aiBtn").onclick=openAssistant;
 document.querySelectorAll(".bottomnav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".bottomnav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");const tab=b.dataset.tab;if(tab==="Buscar"){search.focus();window.scrollTo({top:0,behavior:"smooth"})}else if(tab==="Publicar"){document.querySelector("#publishBtn").click()}else if(tab==="Assistente"){openAssistant()}else if(tab==="Perfil"){showModal("Meu perfil",'<p>Seu perfil permitirá editar seus dados, serviços, candidaturas e preferências. O cadastro real será adicionado na próxima etapa.</p>')}else{window.scrollTo({top:0,behavior:"smooth"})}});
+
+// Pesquisa por voz — Freela Brasil
+const voiceSearch = document.querySelector("#voiceSearch");
+
+voiceSearch.addEventListener("click", () => {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    alert("Seu navegador não oferece reconhecimento de voz. Tente abrir o aplicativo no Google Chrome.");
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = "pt-BR";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  voiceSearch.textContent = "🎙️";
+
+  recognition.onresult = (event) => {
+    search.value = event.results[0][0].transcript;
+    renderJobs();
+    document.querySelector("#jobsSection").scrollIntoView({
+      behavior: "smooth"
+    });
+  };
+
+  recognition.onerror = (event) => {
+    if (event.error === "not-allowed") {
+      alert("Permita o acesso ao microfone nas configurações do navegador.");
+    } else if (event.error !== "no-speech") {
+      alert("Não foi possível reconhecer sua voz. Tente novamente.");
+    }
+  };
+
+  recognition.onend = () => {
+    voiceSearch.textContent = "🎤";
+  };
+
+  try {
+    recognition.start();
+  } catch (error) {
+    voiceSearch.textContent = "🎤";
+    alert("Não foi possível iniciar o microfone. Tente novamente.");
+  }
+});
