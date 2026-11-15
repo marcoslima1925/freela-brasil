@@ -78,3 +78,23 @@ voiceSearch.addEventListener("click", () => {
     alert("Não foi possível iniciar o microfone. Tente novamente.");
   }
 });
+document.querySelector("#contractsBtn").onclick = () => {
+  showModal("Informações sobre contratos", `
+    <h3>1. Contrato de trabalho (CLT)</h3>
+    <p>Exemplo de relação de emprego regida pela legislação trabalhista.</p>
+
+    <h3>2. Prestação de serviços autônomos</h3>
+    <p>Exemplo de contratação de profissional autônomo.</p>
+
+    <h3>3. Contrato por projeto</h3>
+    <p>Exemplo de contratação para realizar um serviço específico.</p>
+
+    <h3>4. Trabalho temporário</h3>
+    <p>Modalidade sujeita às regras legais próprias do trabalho temporário.</p>
+
+    <hr>
+
+    <p><strong>Importante:</strong> O Freela Brasil apenas apresenta informações e exemplos. A negociação e a formalização são feitas diretamente entre as partes. A modalidade adequada depende das condições reais da relação e da legislação aplicável.</p>
+  `);
+};
+
