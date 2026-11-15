@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "freela-brasil-v1";
+const CACHE_NAME = "freela-brasil-v2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
   "./manifest.json"
 ];
 
-// Instala e guarda os arquivos principais
+// Instala a nova versão e guarda os arquivos principais
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -20,7 +20,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Ativa a nova versão
+// Ativa a nova versão e remove caches antigos
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -35,14 +35,17 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Busca os arquivos e utiliza o cache quando necessário
+// Busca arquivos atualizados e utiliza o cache quando estiver offline
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (response.ok && new URL(event.request.url).origin === self.location.origin) {
+        if (
+          response.ok &&
+          new URL(event.request.url).origin === self.location.origin
+        ) {
           const copy = response.clone();
 
           caches.open(CACHE_NAME).then((cache) => {
@@ -63,7 +66,9 @@ self.addEventListener("fetch", (event) => {
 
         return new Response("Você está offline.", {
           status: 503,
-          headers: { "Content-Type": "text/plain; charset=utf-8" }
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8"
+          }
         });
       })
   );
