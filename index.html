@@ -60,7 +60,7 @@
 
     <button id="searchGo" class="search-go" type="button" aria-label="Buscar">→</button>
 
-    <button id="voiceSearch" class="search-go" type="button" aria-label="Pesquisar por voz">🎤</button>
+    <button id="voiceSearch" class="search-go" type="button" aria-label="Conversar com assistente por voz">🎤</button>
   </section>
 
   <section class="quick-stats">
@@ -99,19 +99,6 @@
     </div>
 
     <div id="jobs" class="jobs"></div>
-  </section>
-
-  <section class="ai-card">
-    <div class="ai-spark">✳</div>
-
-    <div class="ai-copy">
-      <span class="ai-label">SEU PARCEIRO CRIATIVO</span>
-      <h2>Ideias melhores com IA.</h2>
-      <p>Currículo, proposta, divulgação e organização do seu trabalho em um só lugar.</p>
-      <button id="aiBtn" class="ai-link">Conhecer assistente <span>↗</span></button>
-    </div>
-
-    <div class="ai-decoration">✦</div>
   </section>
 
   <section class="publish-banner">
@@ -185,10 +172,8 @@
   </form>
 </dialog>
 
-<!-- Carrega o aplicativo apenas uma vez -->
 <script src="app.js"></script>
 
-<!-- Registro do funcionamento offline -->
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
