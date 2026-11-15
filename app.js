@@ -1,3 +1,4 @@
+
 const categories=[
 ["🛒","Supermercados","#e5f9ef"],["🍽️","Restaurantes","#fff0e5"],["🛵","Entregas","#e9f1ff"],["🧹","Limpeza","#e4f8f5"],["🔧","Reparos","#fff1dc"],["💇","Beleza","#ffe9f3"],["💻","Tecnologia","#eee8ff"],["📚","Educação","#fff4ce"],["📦","Logística","#e7f0ff"],["🐾","Pets","#ffeedf"],["🌿","Jardinagem","#e5f7df"],["🎉","Eventos","#ffe7e4"],["📷","Foto e vídeo","#e9e8ff"],["🧾","Administração","#e8f6f2"],["🚗","Motoristas","#e6efff"],["🛍️","Vendas","#ffefdc"],["🧑‍🍳","Alimentação","#fff0e6"],["🏗️","Construção","#f5eddf"],["🎨","Design","#f0e6ff"],["🧵","Artesanato","#ffebf3"],["👶","Cuidados infantis","#e5f8f1"],["🏠","Imóveis","#e9f0ff"],["🧺","Lavanderia","#e5f8ff"],["🧠","Dados e IA","#eee8ff"],["📝","Tradução","#fff5d9"],["📣","Marketing","#ffe9df"],["🚚","Mudanças","#e8f0ff"],["💪","Esportes","#e2f8ee"],["🌷","Flores","#ffeaf1"],["🛡️","Segurança","#e9e8ff"],["🧑‍💼","Recursos Humanos","#e7f7f3"],["🎵","Música","#f0e8ff"],["🖨️","Impressão","#e9f1ff"],["🧽","Higienização","#e5f9f5"],["🧑‍🔬","Engenharia","#e7edff"],["🩺","Bem-estar","#ffe9f0"],["🌾","Agricultura","#eaf5dd"],["🎁","Presentes","#fff0dc"],["🗂️","Organização","#e9e7ff"],["⚡","Serviços rápidos","#fff1d9"]
 ];
@@ -34,50 +35,59 @@ document.querySelectorAll(".bottomnav button").forEach(b=>b.onclick=()=>{documen
 // Pesquisa por voz — Freela Brasil
 const voiceSearch = document.querySelector("#voiceSearch");
 
-voiceSearch.addEventListener("click", () => {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+if (voiceSearch) {
+  voiceSearch.type = "button";
 
-  if (!SpeechRecognition) {
-    alert("Seu navegador não oferece reconhecimento de voz. Tente abrir o aplicativo no Google Chrome.");
-    return;
-  }
+  voiceSearch.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
 
-  const recognition = new SpeechRecognition();
-  recognition.lang = "pt-BR";
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  voiceSearch.textContent = "🎙️";
-
-  recognition.onresult = (event) => {
-    search.value = event.results[0][0].transcript;
-    renderJobs();
-    document.querySelector("#jobsSection").scrollIntoView({
-      behavior: "smooth"
-    });
-  };
-
-  recognition.onerror = (event) => {
-    if (event.error === "not-allowed") {
-      alert("Permita o acesso ao microfone nas configurações do navegador.");
-    } else if (event.error !== "no-speech") {
-      alert("Não foi possível reconhecer sua voz. Tente novamente.");
+    if (!SpeechRecognition) {
+      alert("Abra o Freela Brasil no Google Chrome para usar a busca por voz.");
+      return;
     }
-  };
 
-  recognition.onend = () => {
-    voiceSearch.textContent = "🎤";
-  };
+    const recognition = new SpeechRecognition();
+    recognition.lang = "pt-BR";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
 
-  try {
-    recognition.start();
-  } catch (error) {
-    voiceSearch.textContent = "🎤";
-    alert("Não foi possível iniciar o microfone. Tente novamente.");
-  }
-});
+    voiceSearch.textContent = "🎙️";
+
+    recognition.onresult = (event) => {
+      const frase = event.results[0][0].transcript;
+      search.value = frase;
+      renderJobs();
+      document.querySelector("#jobsSection").scrollIntoView({
+        behavior: "smooth"
+      });
+    };
+
+    recognition.onerror = (event) => {
+      if (event.error === "not-allowed") {
+        alert("Permita o acesso ao microfone nas configurações.");
+      } else if (event.error !== "no-speech") {
+        alert("Não foi possível reconhecer sua voz. Tente novamente.");
+      }
+    };
+
+    recognition.onend = () => {
+      voiceSearch.textContent = "🎤";
+    };
+
+    try {
+      recognition.start();
+    } catch (error) {
+      voiceSearch.textContent = "🎤";
+      alert("Não foi possível iniciar o microfone.");
+    }
+  });
+}
+
 document.querySelector("#contractsBtn").onclick = () => {
   showModal("Informações sobre contratos", `
     <h3>1. Contrato de trabalho (CLT)</h3>
@@ -97,4 +107,3 @@ document.querySelector("#contractsBtn").onclick = () => {
     <p><strong>Importante:</strong> O Freela Brasil apenas apresenta informações e exemplos. A negociação e a formalização são feitas diretamente entre as partes. A modalidade adequada depende das condições reais da relação e da legislação aplicável.</p>
   `);
 };
-
